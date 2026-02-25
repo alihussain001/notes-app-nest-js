@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query } from '@nestjs/common';
 import { CreateNoteDto } from './DTO/create-note.dto';
 import { NotesService } from './notes.service';
 
@@ -7,7 +7,13 @@ export class NotesController {
     constructor(private readonly notesService : NotesService){}
 
     @Post()
-    createNot(@Body() createNoteDto : CreateNoteDto){
+    createNote(@Body() createNoteDto : CreateNoteDto){
         return this.notesService.createNote(createNoteDto);
     }
+
+    @Get()
+    findAll(@Query() query: any){
+        return this.notesService.findAll(query);
+    }
 }
+
