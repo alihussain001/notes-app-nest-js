@@ -49,13 +49,22 @@ export class NotesService {
   }
 
   async updateNote(id: string, updateNoteDto: UpdateNoteDto) {
-
-    const updatedNote = await this.noteModel.findByIdAndUpdate(id, updateNoteDto, {
-      new: true,
-    });
-
+    const updatedNote = await this.noteModel.findByIdAndUpdate(
+      id,
+      updateNoteDto,
+      {
+        new: true,
+      },
+    );
 
     if (!updatedNote) throw new NotFoundException('Note not Found');
     return updatedNote;
   }
+
+  async deleteNote(id: string){
+    const result = await this.noteModel.findByIdAndDelete(id);
+    if(!result) throw new NotFoundException('Note not found!');
+    return {message: 'Note has been deleted successfully!'};
+  }
+
 }
