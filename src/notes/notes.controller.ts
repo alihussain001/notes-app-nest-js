@@ -2,6 +2,7 @@ import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestj
 import { CreateNoteDto } from './DTO/create-note.dto';
 import { NotesService } from './notes.service';
 import { UpdateNoteDto } from './DTO/update-note.dto';
+import { NoteQueryDto } from './DTO/note-query.dto';
 
 @Controller('notes')
 export class NotesController {
@@ -13,7 +14,7 @@ export class NotesController {
     }
 
     @Get()
-    findAll(@Query() query: any){
+    findAll(@Query() query: NoteQueryDto){
         return this.notesService.findAll(query);
     }
 

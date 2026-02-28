@@ -1,5 +1,5 @@
 import { IsEnum, IsNotEmpty, IsString } from "class-validator";
-import { Category } from "./update-note.dto";
+import { Category } from "../schemas/notes.schema";
 
 export class CreateNoteDto{
     @IsString()

@@ -1,10 +1,10 @@
-import { filter } from 'rxjs';
 import { Injectable, NotFoundException, Post } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Note, NoteDocument } from './schemas/notes.schema';
 import { Model } from 'mongoose';
 import { CreateNoteDto } from './DTO/create-note.dto';
 import { UpdateNoteDto } from './DTO/update-note.dto';
+import { NoteQueryDto } from './DTO/note-query.dto';
 
 @Injectable()
 export class NotesService {
@@ -13,12 +13,11 @@ export class NotesService {
     private noteModel: Model<NoteDocument>,
   ) {}
 
-  async createNote(createNoteDto: CreateNoteDto) {
-    const note = new this.noteModel(createNoteDto);
-    return note.save();
+  async createNote(dto: CreateNoteDto) {
+    return this.noteModel.create(dto);
   }
 
-  async findAll(query: any) {
+  async findAll(query: NoteQueryDto) {
     const { category, search, page = 1, limit = 10 } = query;
 
     const filter: any = {};

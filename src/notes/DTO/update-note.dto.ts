@@ -1,10 +1,7 @@
 import { IsEnum, IsNotEmpty, IsOptional, IsString } from "class-validator";
+import { Category } from "../schemas/notes.schema";
 
-export enum Category{
-    PERSONAL = "personal",
-     WORK = "work",
-    STUDY = "study"
-}
+
 
 export class UpdateNoteDto{
     @IsOptional()
