@@ -1,6 +1,7 @@
-import { Body, Controller, Get, Post, Query } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Post, Query } from '@nestjs/common';
 import { CreateNoteDto } from './DTO/create-note.dto';
 import { NotesService } from './notes.service';
+import { UpdateNoteDto } from './DTO/update-note.dto';
 
 @Controller('notes')
 export class NotesController {
@@ -15,5 +16,11 @@ export class NotesController {
     findAll(@Query() query: any){
         return this.notesService.findAll(query);
     }
+
+    @Patch(':id')
+    updateNote(@Param('id') id: string, @Body() dto: UpdateNoteDto){
+        return this.notesService.updateNote(id, dto);
+    }
+
 }
 
