@@ -2,6 +2,12 @@ import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 
 export  type NoteDocument = Note & Document;
 
+export enum Category{
+    PERSONAL = "personal",
+    WORK = "work",
+    STUDY = "study",
+}
+
 @Schema({timestamps: true})
 export class Note{
     @Prop({required: true})
@@ -10,7 +16,7 @@ export class Note{
     @Prop({required:true})
     content!: string;
 
-    @Prop({required: true})
+    @Prop({required: true, enum:Category})
     category!: string
 }
 

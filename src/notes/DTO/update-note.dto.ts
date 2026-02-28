@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsOptional, IsString } from "class-validator";
+import { IsEnum, IsNotEmpty, IsOptional, IsString } from "class-validator";
 
 export enum Category{
     PERSONAL = "personal",
@@ -16,6 +16,6 @@ export class UpdateNoteDto{
     content!: string;
 
     @IsOptional()
-    @IsString()
-    category!: string;
+    @IsEnum(Category)
+    category!: Category;
 }

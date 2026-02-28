@@ -1,4 +1,5 @@
-import { IsNotEmpty, IsString } from "class-validator";
+import { IsEnum, IsNotEmpty, IsString } from "class-validator";
+import { Category } from "./update-note.dto";
 
 export class CreateNoteDto{
     @IsString()
@@ -9,7 +10,7 @@ export class CreateNoteDto{
     @IsNotEmpty()
     content!: string;
 
-    @IsString()
+    @IsEnum(Category)
     @IsNotEmpty()
-    category!: string;
+    category!: Category;
 }
